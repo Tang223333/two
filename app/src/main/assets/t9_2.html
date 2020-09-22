@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jquery-3.1.1.js"></script>
+    <title>Document</title>
+    <style>
+        .divP {
+            display: flex;
+        }
+
+        .divC {
+            flex: 1;
+            margin: 10px;
+        }
+        button {
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .fh {
+            background-color: green;
+        }
+
+        .tj {
+            background-color: red;
+        }
+    </style>
+</head>
+<body style="width: 100%;height: 100%;text-align: center;">
+<form id="form">
+    <div class="divP">
+        <div class="divC">
+            <input type="text" id="userAppointmentName" name="userAppointmentName" placeholder="订单名称">
+        </div>
+        <div class="divC">
+            <input type="text" id="content" name="content" placeholder="订单描述">
+        </div>
+    </div>
+    <div class="divP">
+        <div class="divC">
+            <span>车型:</span>
+            <select name="carId" id="carId">
+                <option value="1">轿车汽车标准型</option>
+                <option value="2">MPV汽车标准型</option>
+                <option value="3">SUV汽车标准型</option>
+            </select>
+        </div>
+        <div class="divC">
+            <span>轮毂:</span>
+            <select name="wheel">
+                <option value="0">烤漆</option>
+                <option value="1">电镀</option>
+            </select>
+        </div>
+    </div>
+    <div class="divP">
+        <div class="divC">
+            <span>发动机排量:</span>
+            <select name="engine">
+                <option value="0">1.0</option>
+                <option value="1">1.5</option>
+                <option value="2">2.0</option>
+                <option value="3">2.5</option>
+                <option value="4">3.0</option>
+                <option value="5">4.0</option>
+            </select>
+        </div>
+        <div class="divC">
+            <span>中控:</span>
+            <select name="control">
+                <option value="0">低配</option>
+                <option value="1">高配</option>
+            </select>
+        </div>
+    </div>
+    <div class="divP">
+        <div class="divC">
+            <span>变速箱:</span>
+            <select name="speed">
+                <option value="0">自动</option>
+                <option value="1">手动</option>
+            </select>
+        </div>
+        <div class="divC">
+            <span>刹车:</span>
+            <select name="brake">
+                <option value="0">鼓式制动器</option>
+                <option value="1">盘式制动器</option>
+            </select>
+        </div>
+    </div>
+    <div class="divP">
+        <div class="divC">
+            <span>悬挂:</span>
+            <select name="hang">
+                <option value="1">独立悬挂系统</option>
+                <option value="2">主动悬挂系统</option>
+                <option value="3">横臂式悬挂系统</option>
+                <option value="4">臂式悬挂系统</option>
+                <option value="5">烛式悬挂系统</option>
+                <option value="6">多连杆式悬挂系统</option>
+                <option value="7">麦弗逊式悬挂系统</option>
+            </select>
+        </div>
+        <div class="divC">
+            <span>外观装饰:</span>
+            <select name="color">
+                <option value="0">红色</option>
+                <option value="1">蓝色</option>
+                <option value="2">绿色</option>
+            </select>
+        </div>
+    </div>
+    <div class="divP">
+        <div class="divC">
+            <span>数量:</span>
+            <select name="num">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <div class="divC">
+            <input type="text" hidden value="1" name="userWorkId">
+            <input type="text" hidden name="time" id="time">
+            <input type="text" hidden name="gold" id="gold">
+            <input type="text" hidden value="0" name="type">
+        </div>
+    </div>
+</form>
+<div class="divP">
+    <div class="divC">
+        <button class="fh" id="fh">返回</button>
+    </div>
+    <div class="divC">
+        <button class="tj" id="tj">提交订单</button>
+    </div>
+</div>
+<script>
+        document.getElementById("fh").onclick=function() {
+            Client.OnFinish();
+        }
+        document.getElementById("tj").onclick=function() {
+
+           var userAppointmentName = document.getElementById("userAppointmentName").value;
+           var content = document.getElementById("content").value;
+           if(userAppointmentName=="" || content==""){
+               alert("订单名称与订单描述不能为空");
+           }else{
+               var time=new Date();
+               time=time/1000;
+               time=parseInt(time);
+               document.getElementById("time").value=time;
+               var carId=document.getElementById("carId").value;
+               var gold=0;
+               if(carId==1){
+                   gold=2000;
+               }else if(carId==2){
+                   gold=3000;
+               }else if(carId==3){
+                   gold=4000;
+               }
+               document.getElementById("gold").value=gold;
+               console.log($("#form").serialize());
+               post("dataInterface/UserAppointment/create");
+           }
+        }
+
+        function post(url){
+            $.ajax({
+                url:"http://192.168.3.13:8085/"+url,
+                data:$("#form").serialize(),
+                method:"GET",
+                async:false,
+                success:function(msg){
+                    var data=JSON.parse(msg);
+                    alert(data.message)
+                },
+                error:function(err) {
+                    alert("网络错误")
+                }
+            })
+        }
+    </script>
+</body>
+</html>

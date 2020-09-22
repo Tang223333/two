@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">先进生产线</string>
+
+    <string-array name="InOutType">
+        <item>原材料</item>
+        <item>人员</item>
+        <item>生产线</item>
+        <item>维修生产环节</item>
+        <item>维修车辆</item>
+        <item>售出</item>
+    </string-array>
+    <string-array name="num">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+</resources>

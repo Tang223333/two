@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <TextView
+        android:id="@+id/item_t13_txt1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="ID"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/item_t13_txt2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="姓名"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/item_t13_txt3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="类型"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/item_t13_txt4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="薪资"
+        android:gravity="center" />
+    <Button
+        android:id="@+id/item_t13_btn"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#f00"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:text="招聘"
+        android:gravity="center" />
+
+</LinearLayout>
